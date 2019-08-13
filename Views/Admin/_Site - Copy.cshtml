@@ -1,0 +1,125 @@
+﻿<!DOCTYPE html>
+
+<html lang="tr-TR">
+<head>
+    <title>@ViewBag.title</title>
+    <meta name="description" content="@ViewBag.description">
+    <meta name="keywords" content="@ViewBag.keywords">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
+    <meta charset="UTF-8" />
+    <link href="https://fonts.googleapis.com/css?Roboto:200,300,400,500&amp;subset=latin-ext" rel="stylesheet">
+    <link href="assets/css/font-awesome.min.css" rel="stylesheet">
+    <link href="assets/css/bootstrap.min.css" rel="stylesheet">
+    <link href="assets/css/style.css" rel="stylesheet">
+</head>
+<body>
+
+    <header>
+
+        <!--HEADER-->
+        <div class="section">
+            <div class="container">
+                <div class="row">
+                    <a href="/" id="logo" class="col-6 col-sm-5 col-md-4">
+                        <img src="assets/img/logo.png" />
+                    </a>
+                    <div class="headerContact col-6 col-sm-4 ml-auto">
+                        <div class="row">
+                            <div class="col-auto">
+                                <a href="tel:02323625088" target="_blank"><i class="fa fa-phone"></i> 0 232 362 50 88</a>
+                            </div>
+                            <div class="col-auto">
+                                <a href="mailto:info@erturkcelebihukuk.com" target="_blank"><i class="fa fa-envelope-o"></i> info@erturkcelebihukuk.com</a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!--MENU-->
+        <div class="section bg-dark">
+            <div class="container">
+                <nav class="navbar navbar-expand-md navbar-dark">
+                    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#UstMenu" aria-controls="UstMenu" aria-expanded="false" aria-label="Toggle navigation">
+                        <span class="navbar-toggler-icon"></span>
+                    </button>
+                    <div class="collapse navbar-collapse" id="UstMenu">
+                        <ul class="navbar-nav">
+                            @*<li class="nav-item active"><a class="nav-link" href="index.html">Anasayfa</a></li>*@
+                            @foreach (var i in ViewBag.UstMenu) {
+                                <li class="nav-item"><a href="@i.Url" @(i.Blank ? "target=\"_blank\"" : "") class="nav-link">@i.Title</a></li>
+                            }
+                        </ul>
+                    </div>
+                </nav>
+            </div>
+        </div>
+
+    </header>
+    
+    @foreach (var i in ViewBag.sections) {
+        <div id="section-@i.Id" class="section @(i.Invert ? "bg-dark" : "")">
+
+            @if (!string.IsNullOrEmpty(i.Title)) {
+                <div class="container">
+                    <h1 class="sectionTitle">
+                        <span class="wrapper">
+                            @i.Title @*<strong>Kimiz</strong>*@
+                            <span class="downLine"></span>
+                            <span class="upLine"></span>
+                        </span>
+                    </h1>
+                </div>
+            }
+
+            <div class="@(i.Full ? "" : "container")">
+                <div class="row">
+                    @foreach (var j in ((IEnumerable<dynamic>)i.Block).OrderBy(x => x.No)) {
+                        <div class="col-md-@j.Width">
+                            @Html.Action("View", (string)j.GetType().BaseType.Name, new { ID = j.Id })
+                        </div>
+                    }
+                </div>
+            </div>
+
+        </div>
+    }
+
+    <!--FOOTER-->
+    <footer>
+        <div class="container">
+            <div class="row text-center">
+
+                <div class="col-xl-4">
+                    <img class="logo" src="assets/img/logo2.png" />
+                </div>
+
+
+                <div class="col-xl-4 mt-3">
+                    Mansuroğlu Mah. 288-7 Sokak Yücel <br />
+                    Yılmaz Apt. B Blok No:5 Kat:1 D:2 <br />Bayraklı İzmir
+                </div>
+
+                <div class="col-xl-4 mt-3">
+                    <a href="tel:02323625088" target="_blank"><i class="fa fa-phone"></i> 0 232 362 50 88</a>
+                    <a href="mailto:info@erturkcelebihukuk.com" target="_blank"><i class="fa fa-envelope-o"></i> info@erturkcelebihukuk.com</a>
+                        <i class="fa fa-clock-o"></i> P.tesi-Cuma 09:00 - 17:00
+                </div>
+
+
+            </div>
+            <hr />
+
+            <a class="text-center" href="http://zsytem.com/" target="_blank">
+                <img src="assets/img/zsytem.png" />
+            </a>
+
+        </div>
+    </footer>
+
+    <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js"></script>
+    <script src="/assets/js/bootstrap.min.js"></script>
+
+</body>
+</html>

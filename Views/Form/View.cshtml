@@ -1,0 +1,36 @@
+﻿@if (ViewBag.state == 1) {
+    <div id="contact-error" class="alert alert-danger">
+        <span class="icon"><i class="fa fa-times"></i></span>
+        <span class="message">Lütfen gerekli alanları doldunuz!</span>
+    </div>
+}
+else if (ViewBag.state == 2) {
+    <div id="contact-success" class="alert alert-success">
+        <span class="icon"><i class="fa fa-check"></i></span>
+        <span class="message">Mesajınız iletildi!</span>
+    </div>
+}
+else if (ViewBag.state == 3) {
+    <div id="contact-error" class="alert alert-danger">
+        <span class="icon"><i class="fa fa-times"></i></span>
+        <span class="message">Teknik sorun!</span>
+    </div>
+}
+
+<form id="contact-form" action="@Request.Url" method="post" enctype="multipart/form-data">
+    @foreach (var i in ViewBag.model.BlockItem) {
+        <div class="form-group">
+            @if (i.Type == "text") {
+                <input id="field-@i.Id" name="field-@i.Id" placeholder="@i.Title" @(i.Required ? "required" : "") type="text">
+            }
+            else if (i.Type == "textarea") {
+                <textarea id="field-@i.Id" rows="4" name="field-@i.Id" placeholder="@i.Title" @(i.Required ? "required" : "")></textarea>
+            }
+        </div>
+    }
+
+    <div class="form-group">
+        <button type="submit" class="button">Gönder</button>
+    </div>
+
+</form>

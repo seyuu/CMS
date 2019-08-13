@@ -1,0 +1,45 @@
+﻿@{
+    Layout = "~/Views/Admin/_Layout.cshtml";
+}
+
+<div class="block-header">
+    <div class="row remove-margin">
+        <div class="col-md-8">
+            <div class="header-section">
+                <h1>Slayt Resim</h1>
+            </div>
+        </div>
+        <div class="col-md-2">
+            <a href="@Request.UrlReferrer" class="header-link">
+                <h1><i class="fa fa-fw fa-chevron-left"></i><small>Geri</small></h1>
+            </a>
+        </div>
+        <div class="col-md-2">
+            <a href="javascript:$('form').submit()" class="header-link">
+                <h1><i class="fa fa-fw fa-check"></i><small>Kaydet</small></h1>
+            </a>
+        </div>
+    </div>
+</div>
+
+<form action="@Request.Url" method="post" enctype="multipart/form-data" class="form-horizontal">
+
+    <input id="Id" name="Id" value="@ViewBag.model.Id" type="hidden" />
+    <input id="BlockId" name="BlockId" type="hidden" value="@ViewBag.model.BlockId" />
+
+     <div class="form-group @Html.validationState("Title")">
+        <label class="col-md-2 control-label" for="Title">Başlık</label>
+        <div class="col-md-9">
+            <input id="Title" name="Title" value="@ViewBag.model.Title" maxlength="150" type="text" class="form-control" />
+            
+        </div>
+    </div>
+
+     <div class="form-group @Html.validationState("Description")">
+        <label class="col-md-2 control-label" for="Description">Açıklama</label>
+        <div class="col-md-9">
+            <textarea id="Description" name="Description" rows="4" class="form-control">@ViewBag.model.Description</textarea>
+        </div>
+    </div>
+
+</form>

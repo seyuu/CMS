@@ -1,0 +1,50 @@
+﻿@{
+    Layout = "~/Views/Admin/_Layout.cshtml";
+}
+
+<div class="block-header">
+    <div class="row remove-margin">
+        <div class="col-md-8">
+            <div class="header-section">
+                <h1>Form Alanları</h1>
+            </div>
+        </div>
+        <div class="col-md-2">
+            <a href="@Request.UrlReferrer" class="header-link">
+                <h1><i class="fa fa-fw fa-chevron-left"></i><small>Geri</small></h1>
+            </a>
+        </div>
+        <div class="col-md-2">
+            <a href="~/admin/form/itemadd/@ViewBag.BlockId" class="header-link">
+                <h1><i class="fa fa-fw fa-plus"></i><small>Ekle</small></h1>
+            </a>
+        </div>
+    </div>
+</div>
+
+<div class="table-responsive">
+    <table class="table table-bordered table-striped">
+        <thead>
+            <tr>
+                <th>Tipi</th>
+                <th>Başlık</th>
+                <th class="text-center">Actions</th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (var i in ViewBag.model) {
+                <tr>
+                    <td>@i.Type</td>
+                    <td>@i.Title</td>
+                    <td class="text-center">
+                        <div class="btn-group btn-group-sm">
+                            <a href="~/admin/form/itemedit/@i.Id" class="btn btn-success"><i class="fa fa-pencil"></i> Düzenle</a>
+                            <a href="~/admin/form/itemdelete/@i.Id" class="btn btn-danger" onclick="return confirm('Kaydı silmek istediğinize emin misiniz?')"><i class="fa fa-times"></i> Sil</a>
+                        </div>
+                    </td>
+                </tr>
+
+            }
+        </tbody>
+    </table>
+</div>

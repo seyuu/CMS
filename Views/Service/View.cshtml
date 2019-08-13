@@ -1,0 +1,14 @@
+﻿<div class="services-boxes clearfix">
+    @foreach (var i in ViewBag.model.BlockItem) {
+        <div class="service">
+            <a href="@i.Link">
+                <div class="image" style="background-image: url('@Util.thumbnailLink(i.Image, 285, 132)');"></div>
+                <div class="content">
+                    <h6>@i.Title</h6>
+                    <span class="category">@i.Content</span>
+                    <span class="arrow"><i class="icon-arrow-right"></i></span>
+                </div>
+            </a>
+        </div>
+    }
+</div>

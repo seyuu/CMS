@@ -1,0 +1,13 @@
+﻿@*<div class="image">
+    <img src="~/Assets/uploads/@ViewBag.model.Name" style="width:100%;" />
+    <h1>@ViewBag.model.Title</h1>
+</div>*@
+
+<div class="page-title" style="background-image: url('assets/uploads/@(ViewBag.model.Name)');">
+    <div class="inner">
+        <div class="container">
+            @*<div class="sub-title">See</div>*@
+            <div class="title">@ViewBag.model.Title</div>
+        </div>
+    </div>
+</div>

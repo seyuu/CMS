@@ -1,0 +1,86 @@
+﻿@{
+    Layout = "~/Views/Admin/_Layout.cshtml";
+}
+
+<div class="block-header">
+    <div class="row remove-margin">
+        <div class="col-md-8">
+            <div class="header-section">
+                <h1>Menü Düzenle</h1>
+            </div>
+        </div>
+        <div class="col-md-2">
+            <a href="@Request.UrlReferrer" class="header-link">
+                <h1><i class="fa fa-fw fa-chevron-left"></i><small>Geri</small></h1>
+            </a>
+        </div>
+        <div class="col-md-2">
+            <a href="javascript:$('form').submit()" class="header-link">
+                <h1><i class="fa fa-fw fa-check"></i><small>Kaydet</small></h1>
+            </a>
+        </div>
+    </div>
+</div>
+
+<form action="@Request.Url" method="post" enctype="multipart/form-data" class="form-horizontal">
+    <input id="Id" name="Id" value="@ViewBag.model.Id" type="hidden" />
+    <input id="MenuId" name="MenuId" value="@ViewBag.model.MenuId" type="hidden" />
+
+     <div class="form-group @Html.validationState("Title")">
+        <label class="col-md-2 control-label" for="Title">Başlık</label>
+        <div class="col-md-9">
+            <input id="Title" name="Title" value="@ViewBag.model.Title" maxlength="50" type="text" class="form-control" />
+        </div>
+    </div>
+
+     <div class="form-group @Html.validationState("Url")">
+        <label class="col-md-2 control-label">Url</label>
+        <div class="col-md-9">
+            <div class="input-group">
+                <input id="Url" name="Url" value="@ViewBag.model.Url" class="form-control" placeholder="Url" type="text">
+                <div class="input-group-btn">
+                    <button type="button" class="btn btn-default dropdown-toggle" data-toggle="dropdown" aria-expanded="false">Sayfa Seç <span class="caret"></span></button>
+                    <ul class="dropdown-menu dropdown-menu-right">
+                        @foreach (var i in Util.getUrlList()) {
+                            <li><a href="javascript:$('#Url').val('@i.Value')">@i.Text</a></li>
+                        }
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </div>
+
+     <div class="form-group @Html.validationState("Blank")">
+        <label class="col-md-2 control-label" for="Blank">Blank</label>
+        <div class="col-md-9">
+            <label class="switch switch-warning">
+                <input id="Blank" name="Blank" value="true" type="checkbox" @(ViewBag.model.Blank ? "checked" : "")><span></span>
+            </label>
+        </div>
+    </div>
+
+     <div class="form-group">
+        <div class="col-md-5 col-md-offset-2">
+            <a href="~/admin" class="btn btn-default"><i class="fa fa-times"></i> Vazgeç</a>
+            <button type="submit" class="btn btn-primary"><i class="fa fa-arrow-right"></i> Kaydet</button>
+        </div>
+    </div>
+
+</form>
+
+@*@section scripts{
+     <script type="text/javascript">
+         function toggleUrlGroup() {
+             var value = $("#Url").val();
+             if (value) {
+                 $("#urlGroup").hide();
+                 $("#ExternalUrl").val();
+             }
+             else {
+                 $("#urlGroup").show();
+             }
+         }
+         $("#Url").change(toggleUrlGroup);
+         toggleUrlGroup();
+    </script>
+}*@

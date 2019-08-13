@@ -1,0 +1,9 @@
+﻿<div class="map" id="map"></div>
+
+<script type="text/javascript">
+    var latitude = @ViewBag.model.Location.latitude;
+    var longitude = @ViewBag.model.Location.Longitude;
+    var markerImage = "/Assets/admin/img/map-marker.png";
+    var mapTheme = "light";
+    google.maps.event.addDomListener(window, 'load', simpleMap(latitude, longitude, markerImage, mapTheme));
+</script>

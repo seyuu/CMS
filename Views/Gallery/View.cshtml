@@ -1,0 +1,15 @@
+﻿<div id="portfolio" class="portfolio  three-columns">
+    <div class="portfolio-sizer"></div>
+    @foreach (var i in ViewBag.model.BlockItem) {
+        <div class="item" style="background-image:url('@Util.thumbnailLink(i.Image,367,242)');">
+            <div class="overlay"></div>
+            <div class="content-wrapper">
+                <div class="content">
+                    <span class="title">@i.Title</span>
+                    <a href="assets/uploads/@i.Image" class="nivo-popup button white no-border" data-lightbox-gallery="gallery-@ViewBag.model.Id">Büyüt</a>
+                </div>
+            </div>
+        </div>
+    }
+</div>
+

@@ -1,0 +1,51 @@
+﻿@{
+    Layout = "~/Views/Admin/_Layout.cshtml";
+}
+
+<div class="block-header">
+    <div class="row remove-margin">
+        <div class="col-md-8">
+            <div class="header-section">
+                <h1>Galeri Resimler</h1>
+            </div>
+        </div>
+        <div class="col-md-2">
+            <a href="@Request.UrlReferrer" class="header-link">
+                <h1><i class="fa fa-fw fa-chevron-left"></i><small>Geri</small></h1>
+            </a>
+        </div>
+        <div class="col-md-2">
+            <a href="~/admin/gallery/itemadd/@ViewBag.BlockID" class="header-link">
+                <h1><i class="fa fa-fw fa-plus"></i><small>Ekle</small></h1>
+            </a>
+        </div>
+    </div>
+</div>
+
+<div class="table-responsive">
+    <table class="table table-bordered table-striped">
+        <thead>
+            <tr>
+                <th>Resim</th>
+                <th>Başlık</th>
+                <th>Kategori</th>
+                <th class="text-center">Actions</th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (var i in ViewBag.model) {
+                <tr>
+                    <td class="text-center"><img src="@Util.thumbnailLink(i.Image, 50, 50)" class="media-object img-circle" width="50" height="50"></td>
+                    <td>@i.Title</td>
+                    <td>@i.Category</td>
+                    <td class="text-center">
+                        <div class="btn-group bpull-right">
+                            <a href="~/admin/gallery/itemedit/@i.Id" class="btn btn-primary"><i class="fa fa-pencil fa-fw"></i></a>
+                            <a href="~/admin/gallery/itemdelete/@i.Id" class="btn btn-primary" onclick="return confirm('Kaydı silmek istediğinize emin misiniz?')"><i class="fa fa-times fa-fw"></i></a>
+                        </div>
+                    </td>
+                </tr>
+            }
+        </tbody>
+    </table>
+</div>

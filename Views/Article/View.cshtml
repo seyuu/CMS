@@ -1,0 +1,16 @@
+﻿@if (Request["Detay"].AsInt() == ViewBag.model.Id) {
+    <div class="mb-5">
+        <h5>@ViewBag.model.Title</h5>
+        @ViewBag.model.Date.ToShortDateString()<br />
+        @ViewBag.model.Detail<br />
+        <a href="?detay" class="btn btn-sm btn-outline-danger mt-3" role="button" aria-pressed="true">Geri</a><br />
+    </div>
+}
+else if(Request["Detay"].AsInt() == 0) {
+    <div class="mb-5">
+        <h5>@ViewBag.model.Title</h5>
+        @ViewBag.model.Date.ToShortDateString()<br />
+        @ViewBag.model.Summary<br />
+        <a href="?detay=@ViewBag.model.Id" class="btn btn-sm btn-outline-danger mt-3" role="button" aria-pressed="true">Devam...</a><br />
+    </div>
+}

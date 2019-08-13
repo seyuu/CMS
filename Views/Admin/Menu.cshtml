@@ -1,0 +1,49 @@
+﻿@{
+    Layout = "~/Views/Admin/_Layout.cshtml";
+}
+
+<div class="block-header">
+    <div class="row remove-margin">
+        <div class="col-md-10">
+            <div class="header-section">
+                <h1>@ViewBag.menu.Name</h1>
+            </div>
+        </div>
+        <div class="col-md-2">
+            <a href="~/admin/menu/add/@ViewBag.menu.Id" class="header-link">
+                <h1><i class="fa fa-fw fa-plus"></i><small>Ekle</small></h1>
+            </a>
+        </div>
+    </div>
+</div>
+
+<div class="table-responsive">
+    <table class="table table-bordered table-striped">
+        <thead>
+            <tr>
+                <th>Title</th>
+                <th>Url</th>
+                <th>Blank</th>
+                <th class="text-center">Actions</th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (var i in ViewBag.model) {
+                <tr>
+                    <td>@i.Title</td>
+                    <td>@i.Url</td>
+                    <td>@i.Blank</td>
+                    <td class="text-center">
+                        <div class="btn-group btn-group-sm">
+                            <a href="~/admin/menu/up/@i.Id" class="btn btn-warning"><i class="fa fa-chevron-up"></i></a>
+                            <a href="~/admin/menu/down/@i.Id" class="btn btn-warning"><i class="fa fa-chevron-down"></i></a>
+                            <a href="~/admin/menu/edit/@i.Id" class="btn btn-warning"><i class="fa fa-pencil"></i></a>
+                            <a href="~/admin/menu/delete/@i.Id" class="btn btn-warning" onclick="return confirm('Kaydı silmek istediğinize emin misiniz?')"><i class="fa fa-times"></i></a>
+                        </div>
+                    </td>
+                </tr>
+
+            }
+        </tbody>
+    </table>
+</div>

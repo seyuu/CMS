@@ -1,0 +1,22 @@
+﻿<div id="welcome-slider" class="welcome-slider flex-slider">
+    <div class="slides clearfix">
+        @foreach (var i in ViewBag.model.BlockItem) {
+            @*<div class="slide" style="background-image: url('assets/images/background02.jpg');">
+                <div class="container">
+                    <h1 class="big-heading"><span>We Build</span>The Bridge</h1>
+                    <a href="https://www.youtube.com/watch?v=iNJdPyoqt8U" class="button icon-button video-popup"><span class="icon"><i class="fa fa-play"></i></span><span class="text">Watch Video</span></a>
+                </div>
+            </div>*@
+            <div class="slide" style="background-image: url('assets/uploads/@i.Image');">
+                <div class="container">
+                    <div class="large-heading">
+                        @*<small>MA</small>*@
+                        <h2>@i.Title</h2>
+                        @*<h2>Architecture</h2>*@
+                        <small>@i.Description</small>
+                    </div>
+                </div>
+            </div>
+        }
+    </div>
+</div>

@@ -1,0 +1,128 @@
+﻿@{
+    Layout = "~/Views/Admin/_Layout.cshtml";
+}
+
+<div class="block-header">
+    <div class="row remove-margin">
+        <div class="col-md-8">
+            <div class="header-section">
+                <h1>Ayarlar</h1>
+            </div>
+        </div>
+        <div class="col-md-2">
+            <a href="@Request.UrlReferrer" class="header-link">
+                <h1><i class="fa fa-fw fa-chevron-left"></i><small>Geri</small></h1>
+            </a>
+        </div>
+        <div class="col-md-2">
+            <a href="javascript:$('form').submit()" class="header-link">
+                <h1><i class="fa fa-fw fa-check"></i><small>Kaydet</small></h1>
+            </a>
+        </div>
+    </div>
+</div>
+
+@Html.renderAlert()
+
+<form action="@Request.Url" method="post" enctype="multipart/form-data" class="form-horizontal">
+
+    <input id="Id" name="Id" value="@ViewBag.model.Id" type="hidden" />
+
+    <div class="form-group @Html.validationState("Description")">
+        <h4 class="sub-header">SEO</h4>
+    </div>
+
+    <div class="form-group @Html.validationState("Title")">
+        <label class="col-md-2 control-label" for="Title">Başlık</label>
+        <div class="col-md-9">
+            <input id="Title" name="Title" value="@ViewBag.model.Title" maxlength="250" type="text" class="form-control" />
+            <span class="help-block">@Html.ValidationMessage("Title")</span>
+        </div>
+    </div>
+
+    <div class="form-group @Html.validationState("Keywords")">
+        <label class="col-md-2 control-label" for="Keywords">Kelimeler</label>
+        <div class="col-md-9">
+            <input id="Keywords" name="Keywords" value="@ViewBag.model.Keywords" class="input-tags" type="text">
+            <span class="help-block">@Html.ValidationMessage("Keywords")</span>
+        </div>
+    </div>
+
+    <div class="form-group @Html.validationState("Description")">
+        <label class="col-md-2 control-label" for="Description">Açıklama</label>
+        <div class="col-md-9">
+            <input id="Description" name="Description" value="@ViewBag.model.Description" maxlength="250" type="text" class="form-control" />
+            <span class="help-block">@Html.ValidationMessage("Description")</span>
+        </div>
+    </div>
+
+    <div class="form-group @Html.validationState("Description")">
+        <h4 class="sub-header">SMTP</h4>
+    </div>
+
+    <div class="form-group @Html.validationState("SmtpServer")">
+        <label class="col-md-2 control-label" for="SmtpServer">Server</label>
+        <div class="col-md-9">
+            <input id="SmtpServer" name="SmtpServer" value="@ViewBag.model.SmtpServer" maxlength="250" type="text" class="form-control" />
+            <span class="help-block">@Html.ValidationMessage("SmtpServer")</span>
+        </div>
+    </div>
+
+    <div class="form-group @Html.validationState("SmtpEmail")">
+        <label class="col-md-2 control-label" for="SmtpEmail">E-Posta</label>
+        <div class="col-md-9">
+            <input id="SmtpEmail" name="SmtpEmail" value="@ViewBag.model.SmtpEmail" maxlength="250" type="text" class="form-control" />
+            <span class="help-block">@Html.ValidationMessage("SmtpEmail")</span>
+        </div>
+    </div>
+
+    <div class="form-group @Html.validationState("SmtpPassword")">
+        <label class="col-md-2 control-label" for="SmtpPassword">Parola</label>
+        <div class="col-md-9">
+            <input id="SmtpPassword" name="SmtpPassword" value="@ViewBag.model.SmtpPassword" maxlength="250" type="password" class="form-control" />
+            <span class="help-block">@Html.ValidationMessage("SmtpPassword")</span>
+        </div>
+    </div>
+
+    <div class="form-group @Html.validationState("SmtpPort")">
+        <label class="col-md-2 control-label" for="SmtpPort">Port</label>
+        <div class="col-md-9">
+            <input id="SmtpPort" name="SmtpPort" value="@ViewBag.model.SmtpPort" maxlength="250" type="text" class="form-control" />
+            <span class="help-block">@Html.ValidationMessage("SmtpPort")</span>
+        </div>
+    </div>
+
+    <div class="form-group @Html.validationState("SmtpSsl")">
+
+
+        <label class="col-md-2 control-label" for="SmtpSsl">SSL</label>
+        <div class="col-md-9">
+            <label class="switch switch-warning">
+
+                <input type="checkbox" id="SmtpSsl" value="1" name="SmtpSsl" ><span></span>
+            </label>
+        </div>
+    </div>
+
+    <div class="form-group @Html.validationState("Description")">
+        <h4 class="sub-header">KULLANICI</h4>
+    </div>
+
+    <div class="form-group @Html.validationState("AdminSifre")">
+        <label class="col-md-2 control-label" for="AdminSifre">Parola</label>
+        <div class="col-md-9">
+            <input id="AdminSifre" name="AdminSifre" maxlength="250" type="password" class="form-control" />
+            <span class="help-block">@Html.ValidationMessage("AdminSifre")</span>
+        </div>
+    </div>
+
+    <div class="form-group @Html.validationState("AdminSifreTekrar")">
+        <label class="col-md-2 control-label" for="AdminSifreTekrar">Parola Tekrar</label>
+        <div class="col-md-9">
+            <input id="AdminSifreTekrar" name="AdminSifreTekrar" maxlength="250" type="password" class="form-control" />
+            <span class="help-block">@Html.ValidationMessage("AdminSifreTekrar")</span>
+        </div>
+    </div>
+
+
+</form>

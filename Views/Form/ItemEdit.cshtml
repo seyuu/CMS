@@ -1,0 +1,54 @@
+﻿@{
+    Layout = "~/Views/Admin/_Layout.cshtml";
+}
+
+<div class="block-header">
+    <div class="row remove-margin">
+        <div class="col-md-8">
+            <div class="header-section">
+                <h1>Form Alan Düzenle</h1>
+            </div>
+        </div>
+        <div class="col-md-2">
+            <a href="@Request.UrlReferrer" class="header-link">
+                <h1><i class="fa fa-fw fa-chevron-left"></i><small>Geri</small></h1>
+            </a>
+        </div>
+        <div class="col-md-2">
+            <a href="javascript:$('form').submit()" class="header-link">
+                <h1><i class="fa fa-fw fa-check"></i><small>Kaydet</small></h1>
+            </a>
+        </div>
+    </div>
+</div>
+
+<form action="@Request.Url" method="post" enctype="multipart/form-data" class="form-horizontal">
+
+    <input id="Id" name="Id" value="@ViewBag.model.Id" type="hidden" />
+    <input id="BlockId" name="BlockId" type="hidden" value="@ViewBag.model.BlockId" />
+
+     <div class="form-group @Html.validationState("Title")">
+        <label class="col-md-2 control-label" for="Title">Başlık</label>
+        <div class="col-md-9">
+            <input id="Title" name="Title" value="@ViewBag.model.Title" maxlength="150" type="text" class="form-control" />
+        </div>
+    </div>
+
+     <div class="form-group @Html.validationState("Type")">
+        <label class="col-md-2 control-label" for="Type">Tipi</label>
+        <div class="col-md-9">
+            <select id="Type" name="Type" class="form-control" size="1">
+                <option value="text" @(ViewBag.model.Type == "text" ? "selected" : "")>Text</option>
+                <option value="textarea" @(ViewBag.model.Type == "textarea" ? "selected" : "")>Textarea</option>
+            </select>
+        </div>
+    </div>
+
+     <div class="form-group @Html.validationState("Required")">
+        <label class="col-md-2 control-label" for="Required">Gerekli mi</label>
+        <div class="col-md-9">
+            <label class="switch switch-warning"><input type="checkbox" id="Required" name="Required" value="true" @(ViewBag.model.Required ? "checked" : "")><span></span></label>
+        </div>
+    </div>
+
+</form>

@@ -1,0 +1,7 @@
+﻿@model CMS.Models.Page[]
+
+<li><h2 class="sidebar-header">Sayfalar</h2></li>
+@foreach (var i in Model) {
+    <li><a href="~/Admin/Section/@i.Id"><i class="fa fa-file"></i>@i.Title</a></li>
+}
+<li><a href="~/admin/page/add"><i class="fa fa-plus"></i>Yeni Sayfa</a></li>

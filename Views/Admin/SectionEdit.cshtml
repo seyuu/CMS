@@ -1,0 +1,47 @@
+﻿@{
+    Layout = "~/Views/Admin/_Layout.cshtml";
+}
+
+<div class="block-header">
+    <div class="row remove-margin">
+        <div class="col-md-8">
+            <div class="header-section">
+                <h1>Bölüm Düzenle</h1>
+            </div>
+        </div>
+        <div class="col-md-2">
+            <a href="@Request.UrlReferrer" class="header-link">
+                <h1><i class="fa fa-fw fa-chevron-left"></i><small>Geri</small></h1>
+            </a>
+        </div>
+        <div class="col-md-2">
+            <a href="javascript:$('form').submit()" class="header-link">
+                <h1><i class="fa fa-fw fa-check"></i><small>Kaydet</small></h1>
+            </a>
+        </div>
+    </div>
+</div>
+
+<form action="@Request.Url" method="post" enctype="multipart/form-data" class="form-horizontal">
+    <input id="PageId" name="PageId" type="hidden" value="@ViewBag.model.PageId" />
+     <div class="form-group @Html.validationState("Title")">
+        <label class="col-md-2 control-label" for="Title">Başlık</label>
+        <div class="col-md-9">
+            <input id="Title" name="Title" value="@ViewBag.model.Title" maxlength="150" type="text" class="form-control" />
+        </div>
+    </div>
+
+     <div class="form-group @Html.validationState("Invert")">
+        <label class="col-md-2 control-label" for="Full">Geniş</label>
+        <div class="col-md-9">
+            <label class="switch switch-warning"><input type="checkbox" id="Full" name="Full" value="true" @(ViewBag.model.Full ? "checked" : "")><span></span></label>
+        </div>
+    </div>
+
+     <div class="form-group @Html.validationState("Invert")">
+        <label class="col-md-2 control-label" for="Invert">Renk Ters Çevrilsin mi?</label>
+        <div class="col-md-9">
+            <label class="switch switch-warning"><input type="checkbox" id="Invert" name="Invert" value="true" @(ViewBag.model.Invert ? "checked" : "")><span></span></label>
+        </div>
+    </div>
+</form>

@@ -1,0 +1,41 @@
+﻿@{
+    Layout = "~/Views/Admin/_Layout.cshtml";
+}
+
+<div class="block-header">
+    <div class="row remove-margin">
+        <div class="col-md-8">
+            <div class="header-section">
+                <h1>Servis Düzenle</h1>
+            </div>
+        </div>
+        <div class="col-md-2">
+            <a href="@Request.UrlReferrer" class="header-link">
+                <h1><i class="fa fa-fw fa-chevron-left"></i><small>Geri</small></h1>
+            </a>
+        </div>
+        <div class="col-md-2">
+            <a href="javascript:$('form').submit()" class="header-link">
+                <h1><i class="fa fa-fw fa-check"></i><small>Kaydet</small></h1>
+            </a>
+        </div>
+    </div>
+</div>
+
+<form action="@Request.Url" method="post" enctype="multipart/form-data" class="form-horizontal form-bordered">
+
+    <input id="ID" name="ID" value="@ViewBag.model.Id" type="hidden" />
+    <input id="SectionID" name="SectionID" type="hidden" value="@ViewBag.model.SectionId" />
+
+    <div class="form-group">
+        <label class="col-md-2 control-label" for="Width">Genişlik</label>
+        <div class="col-md-9">
+            <select id="Width" name="Width" class="form-control" size="1">
+                @for (int i = 1; i <= 12; i++) {
+                    <option value="@i" @(i == ViewBag.model.Width ? "selected" : "")>@i Sütun</option>
+                }
+            </select>
+        </div>
+    </div>
+
+</form>
